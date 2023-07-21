@@ -1,0 +1,293 @@
+
+/* General */
+*{
+    font-family: 'Montserrat';
+}
+
+ion-icon {
+    color: #fff;
+}
+
+body {
+    min-height: 100vh;
+    padding-bottom: 100px;
+    position: relative;
+    font-size: 14px;
+    color: #333333;
+}
+
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.row {
+    margin: 0;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+.btn-primary{
+    background-color: cadetblue;
+    border: 2px solid cornflowerblue;
+}
+
+.btn-primary:hover{
+    background-color: cadetblue;
+    border-color:  #333333;
+}
+
+.msg{
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+#info-container .already-joined-msg {
+    margin: 15px 0;
+    color: #004085;
+    background-color: #cce5ff;
+    border: 1px solid #88daff;
+    padding: 10px;
+    width: 330px;
+}
+
+
+/* Navbar*/
+#navbar img{
+    width:150px;
+}
+
+#navbar {
+    justify-content: space-between;
+    background-color: cadetblue;
+    padding: 0px 0;
+}
+
+#navbar a {
+    font-size: 14px;
+    color: #fff;
+}
+
+#navbar a:hover {
+    font-size: 15px;
+    color: #757575;    
+    font-weight: bold;
+}
+
+/* Search Container */
+#search-container {
+    background-image: url("../img/banner-home.png") ;
+    background-size: cover;
+    background-position: center;
+    height: 10px;
+    padding-bottom: 50px;
+    text-align: right;
+}
+
+#search-container p {
+    color: #333333;
+    font-weight: 900;
+}
+
+#search-container form
+ {
+    width:40%;
+    margin: 0 auto;
+}
+
+/* Contacts List */
+#Contacts-container {
+    padding: 50px;
+}
+
+#Contacts-container h2 {
+    margin-bottom: 10px;
+}
+
+#Contacts-container .subtitle {
+    color: #333333;
+    margin-bottom: 30px;
+}
+
+#cards-container {
+    display: flex;
+}
+
+#Contacts-container .card {
+    flex: 1 1 24%;
+    max-width: 25%;
+    border-radius: 10px;
+    padding: 0;
+    margin: 5px;
+    padding-bottom: .5%;
+}
+
+#Contacts-container img {
+    max-height: 150px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card .card-bord {    
+    padding-left: 15px;
+}
+
+.card .card-date {
+    font-size: 12px;
+    color: #757575;
+}
+
+.card .card-title {    
+    text-align: center;
+    padding-top: 15px;
+    font-size: 20px;
+    color: #212121;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.card-participants {
+    font-size: 14px;
+    color: #757575;
+}
+
+/* Contact Create Page */
+#Contact-create-container {
+    padding: 30px
+}
+
+#Contact-create-container label{
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+#Contact-create-container input, 
+#Contact-create-container select, 
+#Contact-create-container textarea {
+    font-size: 12px;
+}
+
+#Contact-create-container div.sendBtnBox {
+        padding-top: 20px;
+}
+
+/* Contact Page*/
+#image-container, 
+#info-container {
+    margin-top: 30px;
+}
+
+#image-container img{
+    border-radius: 10px;
+}
+
+#info-container h1 {
+    font-size: 36px;
+    font-weight: 900;
+}
+
+#info-container h3, 
+#description-container h3{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#info-container p {
+    margin: 0;
+    font-size: 14px;
+    display: flex;
+}
+
+#info-container ion-icon {
+    font-size: 20px;
+    color: #333333;
+    margin-right: 5px;
+}
+
+#info-container #Contact-submit {
+    margin: 20px 0;
+}
+
+#items-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#items-list li {
+    display: flex;
+}
+
+.contact-contact, .contact-email  {
+    padding-top: 15px;
+}
+
+.contact-back {
+    padding-top: 30px;
+}
+
+/* Dashboard */
+.dashboard-title-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.dashboard-Contact-container th {
+    width: 20%;
+}
+
+.contacts-search-for {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.table td.action, th.action {
+    text-align: center;
+}
+
+.dashboard-Contact-container tr, td {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+ion-icon#trash-outline, ion-icon#exit-outline{
+    color: #ffffff;
+}
+
+/*Edit Page*/
+.input-edit{
+    margin-top: 10px;
+}
+
+/* Footer */
+footer{
+    text-align: center;
+    background-color: cadetblue;
+    color: #fff;
+    padding: 30px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    
