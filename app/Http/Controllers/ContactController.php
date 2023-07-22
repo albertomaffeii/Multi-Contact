@@ -19,22 +19,31 @@ class ContactController extends Controller
         return view('contacts.create');
     }
 
-    public function store(Request $request) {
-
+    public function store(Request $request)
+    {
+        $request->validate([
+            'countrycode' => 'required',
+            'number' => 'required|digits:9',
+        ], [
+            'countrycode.required' => 'The country code field is required.',
+            'number.required' => 'The number field is required.',
+            'number.digits' => 'The number field must be exactly 9 digits.',
+        ]);
+    
         $contact = new Contact;
-
-        $contact->name = $request->name;
-        $contact->contact = $request->contact; 
-        $contact->email = $request->email;
-
+    
+        $contact->countrycode = $request->countrycode;
+        $contact->number = $request->number;
+    
         $user = auth()->user();
         $contact->user_id = $user->id;
-
+    
         $contact->save();
-
-        return redirect('/')->with('msg', 'Contact created successfully!');
-
+    
+        return redirect('/contacts/dashboard')->with('msg', 'Contact created successfully!');
     }
+
+
     
     public function show($id){
 
@@ -52,57 +61,74 @@ class ContactController extends Controller
 
    
 
-    public function dashboard() {
+    public function dashboard()
+    {
+        // Obtenha o usuário autenticado
         $user = auth()->user();
+    
+        // Obtenha apenas os contatos relacionados ao usuário autenticado
         $contacts = $user->contacts;
-
+    
+        // Verifique se há um parâmetro de pesquisa
         $search = request('search');
-
-        if($search) {
-
-            $contacts = Contact::where([
-                ['name','like','%'.$search.'%']
-            ])->get();
-
-        } else {
-            $contacts = Contact::all();
+    
+        // Se houver uma pesquisa, filtre os contatos com base na pesquisa
+        if ($search) {
+            $contacts = Contact::where('number', 'like', '%' . $search . '%')->where('user_id', $user->id)->get();
         }
-        
-        return view('contacts.dashboard', ['contacts' => $contacts, 'search' => $search]);
+    
+        // Retorne a view do dashboard, passando os contatos e a pesquisa como parâmetros
+        return view('contacts.dashboard', ['contacts' => $contacts, 'search' => $search, 'user' => $user]);
     }
+
     
 
     public function destroy($id){
 
         Contact::findOrFail($id)->delete();
 
-        return redirect('/dashboard')->with('msg', 'Contact deleted successfully!');
+        return redirect('/contacts/dashboard')->with('msg', 'Contact deleted successfully!');
 
     }
 
-    public function edit($id){
-
-        $user = auth()->user();
-
+ 
+    public function edit($id)
+    {
+        // Localize o contato pelo ID fornecido
         $contact = Contact::findOrFail($id);
-
-        if($user->id != $contact->user->id) {
-            return redirect('/dashboard')->with('msg','You cannot edit contacts through this method.');
-        }
-
-        return view('/contacts.edit', ['contact' => $contact]);
-
-    }
     
-    public function update(Request $request){
-
-        $data = $request->all();
-
-        Contact::findOrFail($request->id)->update($data);
-
-        return redirect('/dashboard')->with('msg', 'Contact updated successfully!');
-
+        // Verifique se o contato pertence ao usuário autenticado antes de permitir a edição
+        $user = auth()->user();
+        if ($user->id !== $contact->user_id) {
+            return redirect('/contacts/dashboard')->with('msg', 'You are not authorized to edit this contact.');
+        }
+    
+        // Retorne a view de edição, passando o contato como parâmetro
+        return view('contacts.edit', ['contact' => $contact]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'countrycode' => 'required',
+            'number' => 'required|digits:9',
+        ], [
+            'countrycode.required' => 'The country code field is required.',
+            'number.required' => 'The number field is required.',
+            'number.digits' => 'The number field must be exactly 9 digits.',
+        ]);
+    
+        $contact = Contact::findOrFail($id);
+    
+        $contact->countrycode = $request->countrycode;
+        $contact->number = $request->number;
+    
+        $contact->save();
+    
+        return redirect('/contacts/dashboard')->with('msg', 'Contact updated successfully!');
+    }
+
+
 
     
 

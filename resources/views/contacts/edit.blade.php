@@ -11,16 +11,18 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ $contact->name }}" placeholder="contact's name"  required>
+            <label for="name">Country Code:</label>
+            <input type="text" class="form-control" id="countrycode" name="countrycode" value="{{ $contact->countrycode }}" placeholder="contact's name" />
+                @error('countrycode')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
         </div>
         <div class="form-group input-edit">
-            <label for="contact">Contact:</label>
-            <input type="text" id="contact" name="contact" class="form-control" value="{{ $contact->contact }}" placeholder="Contact with 9 digits"  required>
-        </div>
-        <div class="form-group input-edit">
-            <label for="Email">Email:</label>
-            <input type="text" id="email" name="email" class="form-control" value="{{ $contact->email }}" placeholder="contact's email"  required>
+            <label for="contact">Number:</label>
+            <input type="text" id="number" name="number" class="form-control" value="{{ $contact->number }}" placeholder="Number with 9 digits" />
+                @error('number')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
         </div>        
         <div class="sendBtnBox input-edit">
             <input type="submit" class="btn btn-primary" value="Update contact">

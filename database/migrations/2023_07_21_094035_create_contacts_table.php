@@ -18,6 +18,7 @@ class CreateContactsTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('countrycode')->nullable(false);
             $table->string('number', 9)->nullable(false);
+            $table->softDeletes();
         });
     }
 
